@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Valentine</title>
+  <style>
+    body {
+      margin: 0;
+      background: #ffb6c1;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    h1 {
+      color: #ff3366;
+      font-size: 40px;
+      margin-top: 20px;
+    }
+
+    h2 {
+      color: #d6336c;
+      max-width: 800px;
+      margin: 20px auto;
+    }
+
+    .pic {
+      width: 280px;
+      height: 280px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .pic img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .pic-row {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 20px;
+      border: none;
+      border-radius: 12px;
+      background: #ff4d7a;
+      color: white;
+      cursor: pointer;
+      margin: 10px;
+      transition: all 0.2s ease;
+    }
+
+    #screen2 {
+      display: none;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Confetti */
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      top: -10px;
+      animation: fall linear infinite;
+      z-index: 1;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- SCREEN 1 -->
+<div id="screen1">
+  <h1>Happy Valentine’s Day ❤️</h1>
+
+  <div class="pic" style="margin:20px auto;">
+    <img src="pic1.jpg">
+  </div>
+
+  <h2>Will you be my Valentine?</h2>
+
+  <button id="yesBtn" onclick="yes()">Yes</button>
+  <button id="noBtn">No</button>
+</div>
+
+<!-- SCREEN 2 -->
+<div id="screen2">
+  <h1>Happy Valentine’s Day ❤️</h1>
+
+  <h2>
+    Happy valentines day Zurriya, I just want you to know how deeply I love and adore you. Every moment with you feels like a beautiful dream, and I’m so grateful for the warmth, joy, and love you bring into my life. You’re my heart, my smile, my everything, and I can’t imagine a single day without you. Thank you for being you so amazing and kind, and so incredibly special. I love you more than words could ever express, and I’ll keep loving you more and more every day baby youre the best thing to ever happen to me my sweet beautiful girl
+  </h2>
+
+  <!-- Pictures side by side -->
+  <div class="pic-row">
+    <div class="pic">
+      <img src="pic2.jpg">
+    </div>
+
+    <div class="pic">
+      <img src="pic3.jpg">
+    </div>
+  </div>
+
+  <audio id="music" src="song.mp3" autoplay></audio>
+</div>
+
+<script>
+  const noBtn = document.getElementById("noBtn");
+
+  // NO button runs away
+  noBtn.addEventListener("mouseover", () => {
+    const x = Math.random() * (window.innerWidth - 150);
+    const y = Math.random() * (window.innerHeight - 60);
+    noBtn.style.position = "absolute";
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+  });
+
+  function yes() {
+    document.getElementById("screen1").style.display = "none";
+    document.getElementById("screen2").style.display = "block";
+    document.getElementById("music").play();
+    startConfetti();
+  }
+
+  function startConfetti() {
+    for (let i = 0; i < 160; i++) {
+      const confetti = document.createElement("div");
+      confetti.className = "confetti";
+      confetti.style.left = Math.random() * window.innerWidth + "px";
+      confetti.style.animationDuration = (Math.random() * 3 + 2) + "s";
+      confetti.style.backgroundColor =
+        ["#ff4d7a", "#ffcccb", "#ff69b4", "#ffffff"][Math.floor(Math.random() * 4)];
+      document.body.appendChild(confetti);
+    }
+  }
+</script>
+
+</body>
+</html>
